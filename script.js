@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // DOM要素の取得
     const addBtn = document.getElementById('add-btn');
     const resetBtn = document.getElementById('reset-btn');
+    const randomTopBtn = document.getElementById('random-top-btn');
     const modalOverlay = document.getElementById('modal-overlay');
     const closeBtn = document.getElementById('close-btn');
     const mainText = document.getElementById('main-text');
@@ -424,7 +425,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // ランダムボタン
+    // ランダムボタン（モーダル内）
     randomBtn.addEventListener('click', function() {
         const randomSettings = generateRandomSettings();
         
@@ -432,6 +433,17 @@ document.addEventListener('DOMContentLoaded', function() {
         presetBtns.forEach(b => b.classList.remove('selected'));
         
         updateUI(randomSettings);
+    });
+    
+    // ランダムボタン（トップページ）
+    randomTopBtn.addEventListener('click', function() {
+        const randomSettings = generateRandomSettings();
+        
+        // プリセットボタンの選択状態をクリア
+        presetBtns.forEach(b => b.classList.remove('selected'));
+        
+        updateUI(randomSettings);
+        resetButtonTimer();
     });
     
     // ホバー効果を削除（ボタン位置ずれ防止）
