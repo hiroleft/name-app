@@ -192,7 +192,7 @@
                                     <button class="color-preset" data-color="#96d35f" style="background-color: #96d35f;"></button>
                                 </div>
                                 <button class="custom-color-btn" id="bg-custom-btn">Custom</button>
-                                <input type="color" id="background-color" value="#e9e9e9" style="visibility: hidden; pointer-events: none;">
+                                <input type="color" id="background-color" value="#e9e9e9" style="position: absolute; left: -9999px;">
                             </div>
                         </div>
                         
@@ -207,7 +207,7 @@
                                     <button class="color-preset" data-color="#96d35f" style="background-color: #96d35f;"></button>
                                 </div>
                                 <button class="custom-color-btn" id="text-custom-btn">Custom</button>
-                                <input type="color" id="text-color" value="#1d1d1d" style="visibility: hidden; pointer-events: none;">
+                                <input type="color" id="text-color" value="#1d1d1d" style="position: absolute; left: -9999px;">
                             </div>
                         </div>
                     </div>
@@ -232,6 +232,17 @@
                     <button class="modal-reset-btn" id="modal-reset-btn">Reset</button>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- カラーピッカーモーダル -->
+    <div class="color-picker-overlay" id="color-picker-overlay">
+        <div class="color-picker-modal">
+            <div class="color-picker-header">
+                <h3 id="color-picker-title">Background Color</h3>
+                <button class="color-picker-close" id="color-picker-close">×</button>
+            </div>
+            <input type="color" id="color-picker-input" style="width: 100%; height: 200px; border: none; border-radius: 8px;">
         </div>
     </div>
 

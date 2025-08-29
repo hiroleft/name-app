@@ -11,6 +11,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const textContainer = document.querySelector('.text-container');
     const buttonContainer = document.querySelector('.button-container');
     
+    // カラーピッカーモーダル要素
+    const colorPickerOverlay = document.getElementById('color-picker-overlay');
+    const colorPickerClose = document.getElementById('color-picker-close');
+    const colorPickerInput = document.getElementById('color-picker-input');
+    const colorPickerTitle = document.getElementById('color-picker-title');
+    
     
     // 設定要素の取得
     const textInput = document.getElementById('text-input');
@@ -401,71 +407,49 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // カスタムカラーボタン - モバイル対応
+    // 現在編集中のカラー要素を追跡
+    let currentColorTarget = null;
+    
+    // カラーピッカーモーダルを開く
+    function openColorPickerModal(targetElement, title) {
+        currentColorTarget = targetElement;
+        colorPickerTitle.textContent = title;
+        colorPickerInput.value = targetElement.value;
+        colorPickerOverlay.classList.add('show');
+    }
+    
+    // カラーピッカーモーダルを閉じる
+    function closeColorPickerModal() {
+        colorPickerOverlay.classList.remove('show');
+        currentColorTarget = null;
+    }
+    
+    // カスタムカラーボタン
     bgCustomBtn.addEventListener('click', function(e) {
         e.preventDefault();
-        e.stopPropagation();
-        
-        // モバイルでの確実な表示のため
-        backgroundColor.style.position = 'fixed';
-        backgroundColor.style.top = '50%';
-        backgroundColor.style.left = '50%';
-        backgroundColor.style.transform = 'translate(-50%, -50%)';
-        backgroundColor.style.zIndex = '99999';
-        backgroundColor.style.opacity = '1';
-        backgroundColor.style.visibility = 'visible';
-        backgroundColor.style.pointerEvents = 'auto';
-        
-        // 少し遅延させてからクリック
-        setTimeout(() => {
-            backgroundColor.focus();
-            backgroundColor.click();
-        }, 50);
-        
-        // クリック後に元に戻す
-        setTimeout(() => {
-            backgroundColor.style.position = '';
-            backgroundColor.style.top = '';
-            backgroundColor.style.left = '';
-            backgroundColor.style.transform = '';
-            backgroundColor.style.zIndex = '';
-            backgroundColor.style.opacity = '';
-            backgroundColor.style.visibility = 'hidden';
-            backgroundColor.style.pointerEvents = 'none';
-        }, 200);
+        openColorPickerModal(backgroundColor, 'Background Color');
     });
     
     textCustomBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        // モバイルでの確実な表示のため
-        textColor.style.position = 'fixed';
-        textColor.style.top = '50%';
-        textColor.style.left = '50%';
-        textColor.style.transform = 'translate(-50%, -50%)';
-        textColor.style.zIndex = '99999';
-        textColor.style.opacity = '1';
-        textColor.style.visibility = 'visible';
-        textColor.style.pointerEvents = 'auto';
-        
-        // 少し遅延させてからクリック
-        setTimeout(() => {
-            textColor.focus();
-            textColor.click();
-        }, 50);
-        
-        // クリック後に元に戻す
-        setTimeout(() => {
-            textColor.style.position = '';
-            textColor.style.top = '';
-            textColor.style.left = '';
-            textColor.style.transform = '';
-            textColor.style.zIndex = '';
-            textColor.style.opacity = '';
-            textColor.style.visibility = 'hidden';
-            textColor.style.pointerEvents = 'none';
-        }, 200);
+        e.preventDefault();  
+        openColorPickerModal(textColor, 'Text Color');
+    });
+    
+    // カラーピッカーイベント
+    colorPickerInput.addEventListener('input', function() {
+        if (currentColorTarget) {
+            currentColorTarget.value = this.value;
+            currentColorTarget.dispatchEvent(new Event('input'));
+        }
+    });
+    
+    colorPickerClose.addEventListener('click', closeColorPickerModal);
+    
+    // モーダル外をクリックして閉じる
+    colorPickerOverlay.addEventListener('click', function(e) {
+        if (e.target === colorPickerOverlay) {
+            closeColorPickerModal();
+        }
     });
     
     // プリセットボタンのイベントリスナー
