@@ -632,7 +632,10 @@ body::-webkit-scrollbar {
         height: 40px;
     }
     
-    .random-top-btn,
+    .random-top-btn {
+        width: 40px;
+    }
+    
     .add-btn {
         width: 40px;
         font-size: 20px;

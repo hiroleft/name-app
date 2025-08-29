@@ -398,14 +398,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // カスタムカラーボタン
-    bgCustomBtn.addEventListener('click', function() {
-        backgroundColor.click();
-    });
-    
-    textCustomBtn.addEventListener('click', function() {
-        textColor.click();
-    });
     
     // プリセットボタンのイベントリスナー
     presetBtns.forEach(btn => {
