@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>NAME - Make your name</title>
+    
+    <!-- PWA設定 -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1d1d1d">
+    <meta name="background-color" content="#e9e9e9">
+    <meta name="description" content="社名やサービス名の見た目を確認するためのアプリ">
+    
+    <!-- iOS PWA設定 -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="NAME">
+    <link rel="apple-touch-icon" href="./img/icon.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="./img/icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./img/icon.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="./img/icon.png">
+    
+    <!-- ファビコン -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/icon.png">
+    
+    <!-- Microsoft タイル -->
+    <meta name="msapplication-TileColor" content="#1d1d1d">
+    <meta name="msapplication-TileImage" content="./img/icon.png">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="text-container">
+            <div class="main-title">
+                <h1 id="main-text" contenteditable="true" spellcheck="false">NAME</h1>
+            </div>
+            <div class="subtitle">
+                <p id="subtitle-text" contenteditable="true" spellcheck="false">Make your name</p>
+            </div>
+        </div>
+        
+        <div class="button-container">
+            <button class="reset-btn" id="reset-btn" title="Reset">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 4V10H7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M3.51 15A9 9 0 1 0 6 5L1 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <button class="add-btn" id="add-btn" title="Add">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 5V19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- モーダル -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-scroll">
+                <div class="modal-header">
+                    <h2>Settings</h2>
+                    <button class="close-btn" id="close-btn">x Close</button>
+                </div>
+                
+                <div class="divider"></div>
+                
+                <div class="modal-body">
+                    <!-- Main Text Section -->
+                    <div class="setting-section">
+                        <div class="setting-group">
+                            <label for="text-input">Main Text</label>
+                            <input type="text" id="text-input" value="NAME" placeholder="NAME">
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label for="tagline-input">Tagline</label>
+                            <input type="text" id="tagline-input" value="Check the Look" placeholder="Check the Look">
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label>
+                                <input type="checkbox" id="subtitle-visible" checked>
+                                Show subtitle
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="divider"></div>
+                    
+                    <!-- Font Family Section -->
+                    <div class="setting-section">
+                        <div class="setting-group">
+                            <label for="font-family">Font family</label>
+                            <select id="font-family">
+                                <option value="Inter">Inter</option>
+                                <option value="Arial">Arial</option>
+                                <option value="Helvetica">Helvetica</option>
+                                <option value="Times New Roman">Times New Roman</option>
+                                <option value="Georgia">Georgia</option>
+                                <option value="Verdana">Verdana</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="divider"></div>
+                    
+                    <!-- Main Text Controls -->
+                    <div class="setting-section">
+                        <div class="slider-group">
+                            <div class="slider-label">
+                                <span>Main Text Font Size</span>
+                                <span id="font-size-value">48px</span>
+                            </div>
+                            <div class="slider-container">
+                                <input type="range" id="font-size" min="24" max="96" value="48">
+                            </div>
+                        </div>
+                        
+                        <div class="slider-group">
+                            <div class="slider-label">
+                                <span>Main Text Character spacing</span>
+                                <span id="letter-spacing-value">6px</span>
+                            </div>
+                            <div class="slider-container">
+                                <input type="range" id="letter-spacing" min="0" max="20" value="6">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Subtext Controls -->
+                    <div class="setting-section">
+                        <div class="slider-group">
+                            <div class="slider-label">
+                                <span>Subtext Font size</span>
+                                <span id="subtext-font-size-value">16px</span>
+                            </div>
+                            <div class="slider-container">
+                                <input type="range" id="subtext-font-size" min="12" max="24" value="16">
+                            </div>
+                        </div>
+                        
+                        <div class="slider-group">
+                            <div class="slider-label">
+                                <span>Subtext Character spacing</span>
+                                <span id="subtext-letter-spacing-value">1px</span>
+                            </div>
+                            <div class="slider-container">
+                                <input type="range" id="subtext-letter-spacing" min="0" max="10" value="1">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="divider"></div>
+                    
+                    <!-- Text Gap -->
+                    <div class="setting-section">
+                        <div class="slider-group">
+                            <div class="slider-label">
+                                <span>Text Gap</span>
+                                <span id="text-gap-value">10px</span>
+                            </div>
+                            <div class="slider-container">
+                                <input type="range" id="text-gap" min="0" max="50" value="10">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="divider"></div>
+                    
+                    <!-- Color Section -->
+                    <div class="setting-section">
+                        <div class="color-section">
+                            <label>Background color</label>
+                            <div class="color-options">
+                                <div class="color-preset-container">
+                                    <button class="color-preset" data-color="#ebebeb" style="background-color: #ebebeb;"></button>
+                                    <button class="color-preset" data-color="#000000" style="background-color: #000000;"></button>
+                                    <button class="color-preset" data-color="#5e30eb" style="background-color: #5e30eb;"></button>
+                                    <button class="color-preset" data-color="#e63b7a" style="background-color: #e63b7a;"></button>
+                                    <button class="color-preset" data-color="#96d35f" style="background-color: #96d35f;"></button>
+                                </div>
+                                <button class="custom-color-btn" id="bg-custom-btn">Custom</button>
+                                <input type="color" id="background-color" value="#e9e9e9" style="display: none;">
+                            </div>
+                        </div>
+                        
+                        <div class="color-section">
+                            <label>Text color</label>
+                            <div class="color-options">
+                                <div class="color-preset-container">
+                                    <button class="color-preset" data-color="#ebebeb" style="background-color: #ebebeb;"></button>
+                                    <button class="color-preset" data-color="#000000" style="background-color: #000000;"></button>
+                                    <button class="color-preset" data-color="#5e30eb" style="background-color: #5e30eb;"></button>
+                                    <button class="color-preset" data-color="#e63b7a" style="background-color: #e63b7a;"></button>
+                                    <button class="color-preset" data-color="#96d35f" style="background-color: #96d35f;"></button>
+                                </div>
+                                <button class="custom-color-btn" id="text-custom-btn">Custom</button>
+                                <input type="color" id="text-color" value="#1d1d1d" style="display: none;">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="divider"></div>
+                    
+                    <!-- Preset Section -->
+                    <div class="setting-section">
+                        <label>Preset</label>
+                        <div class="preset-buttons">
+                            <button class="preset-btn" data-preset="minimal">Minimal</button>
+                            <button class="preset-btn" data-preset="urban">Urban</button>
+                            <button class="preset-btn" data-preset="tech">Tech</button>
+                            <button class="preset-btn" data-preset="elegant">Elegant</button>
+                        </div>
+                        <button class="random-btn" id="random-btn">Random</button>
+                    </div>
+                    
+                    <div class="divider"></div>
+                    
+                    <!-- Reset Button -->
+                    <button class="modal-reset-btn" id="modal-reset-btn">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    
+    <!-- Service Worker登録 -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./service-worker.js')
+                    .then(registration => {
+                        console.log('Service Worker registered successfully:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            });
+        }
+        
+        // PWAインストールプロンプト
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            // インストールバナーを表示する場合はここに実装
+            console.log('PWA install prompt available');
+        });
+        
+        // PWAインストール後
+        window.addEventListener('appinstalled', (evt) => {
+            console.log('PWA was installed');
+        });
+    </script>
+</body>
+</html>
