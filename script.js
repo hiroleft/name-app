@@ -398,6 +398,32 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // カスタムカラーボタン
+    bgCustomBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        backgroundColor.style.pointerEvents = 'auto';
+        backgroundColor.style.position = 'static';
+        backgroundColor.style.opacity = '1';
+        backgroundColor.click();
+        setTimeout(() => {
+            backgroundColor.style.pointerEvents = 'none';
+            backgroundColor.style.position = 'absolute';
+            backgroundColor.style.opacity = '0';
+        }, 100);
+    });
+    
+    textCustomBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        textColor.style.pointerEvents = 'auto';
+        textColor.style.position = 'static';
+        textColor.style.opacity = '1';
+        textColor.click();
+        setTimeout(() => {
+            textColor.style.pointerEvents = 'none';
+            textColor.style.position = 'absolute';
+            textColor.style.opacity = '0';
+        }, 100);
+    });
     
     // プリセットボタンのイベントリスナー
     presetBtns.forEach(btn => {
