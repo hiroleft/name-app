@@ -11,12 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const textContainer = document.querySelector('.text-container');
     const buttonContainer = document.querySelector('.button-container');
     
-    // カラーピッカーモーダル要素
-    const colorPickerModal = document.getElementById('color-picker-modal');
-    const colorPickerClose = document.getElementById('color-picker-close');
-    const colorOptions = document.querySelectorAll('.color-option');
-    const nativePickerBtn = document.getElementById('native-picker-btn');
-    const colorPickerTitle = document.getElementById('color-picker-title');
     
     // 設定要素の取得
     const textInput = document.getElementById('text-input');
@@ -319,11 +313,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // モーダルを開く
     function openModal() {
         modalOverlay.classList.add('show');
+        textContainer.classList.add('modal-open');
     }
     
     // モーダルを閉じる
     function closeModal() {
         modalOverlay.classList.remove('show');
+        textContainer.classList.remove('modal-open');
     }
     
     // リセット機能
@@ -405,58 +401,71 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // 現在編集中のカラー要素を追跡
-    let currentColorInput = null;
-    
-    // カスタムカラーピッカーモーダルを開く
-    function openColorPicker(colorInput, title) {
-        currentColorInput = colorInput;
-        colorPickerTitle.textContent = title;
-        colorPickerModal.classList.add('show');
-    }
-    
-    // カスタムカラーピッカーモーダルを閉じる
-    function closeColorPicker() {
-        colorPickerModal.classList.remove('show');
-        currentColorInput = null;
-    }
-    
-    // カスタムカラーボタン
-    bgCustomBtn.addEventListener('click', function() {
-        openColorPicker(backgroundColor, 'Background Color');
+    // カスタムカラーボタン - モバイル対応
+    bgCustomBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // モバイルでの確実な表示のため
+        backgroundColor.style.position = 'fixed';
+        backgroundColor.style.top = '50%';
+        backgroundColor.style.left = '50%';
+        backgroundColor.style.transform = 'translate(-50%, -50%)';
+        backgroundColor.style.zIndex = '99999';
+        backgroundColor.style.opacity = '1';
+        backgroundColor.style.visibility = 'visible';
+        backgroundColor.style.pointerEvents = 'auto';
+        
+        // 少し遅延させてからクリック
+        setTimeout(() => {
+            backgroundColor.focus();
+            backgroundColor.click();
+        }, 50);
+        
+        // クリック後に元に戻す
+        setTimeout(() => {
+            backgroundColor.style.position = '';
+            backgroundColor.style.top = '';
+            backgroundColor.style.left = '';
+            backgroundColor.style.transform = '';
+            backgroundColor.style.zIndex = '';
+            backgroundColor.style.opacity = '';
+            backgroundColor.style.visibility = 'hidden';
+            backgroundColor.style.pointerEvents = 'none';
+        }, 200);
     });
     
-    textCustomBtn.addEventListener('click', function() {
-        openColorPicker(textColor, 'Text Color');
-    });
-    
-    // カラーピッカーモーダルのイベントリスナー
-    colorPickerClose.addEventListener('click', closeColorPicker);
-    
-    // モーダル外をクリックして閉じる
-    colorPickerModal.addEventListener('click', function(e) {
-        if (e.target === colorPickerModal) {
-            closeColorPicker();
-        }
-    });
-    
-    // カラーオプションのクリック
-    colorOptions.forEach(option => {
-        option.addEventListener('click', function() {
-            if (currentColorInput) {
-                currentColorInput.value = this.dataset.color;
-                currentColorInput.dispatchEvent(new Event('input'));
-                closeColorPicker();
-            }
-        });
-    });
-    
-    // More Colorsボタン（ネイティブピッカー）
-    nativePickerBtn.addEventListener('click', function() {
-        if (currentColorInput) {
-            closeColorPicker();
-            currentColorInput.click();
-        }
+    textCustomBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // モバイルでの確実な表示のため
+        textColor.style.position = 'fixed';
+        textColor.style.top = '50%';
+        textColor.style.left = '50%';
+        textColor.style.transform = 'translate(-50%, -50%)';
+        textColor.style.zIndex = '99999';
+        textColor.style.opacity = '1';
+        textColor.style.visibility = 'visible';
+        textColor.style.pointerEvents = 'auto';
+        
+        // 少し遅延させてからクリック
+        setTimeout(() => {
+            textColor.focus();
+            textColor.click();
+        }, 50);
+        
+        // クリック後に元に戻す
+        setTimeout(() => {
+            textColor.style.position = '';
+            textColor.style.top = '';
+            textColor.style.left = '';
+            textColor.style.transform = '';
+            textColor.style.zIndex = '';
+            textColor.style.opacity = '';
+            textColor.style.visibility = 'hidden';
+            textColor.style.pointerEvents = 'none';
+        }, 200);
     });
     
     // プリセットボタンのイベントリスナー
