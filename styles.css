@@ -42,7 +42,7 @@ body::-webkit-scrollbar {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 32px;
+    padding: 24px;
     position: relative;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -244,72 +244,6 @@ body::-webkit-scrollbar {
         transform: translateY(-80px);
         transition: transform 0.3s ease;
     }
-}
-
-/* カラーピッカーモーダル */
-.color-picker-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10000;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-}
-
-.color-picker-overlay.show {
-    opacity: 1;
-    visibility: visible;
-}
-
-.color-picker-modal {
-    background-color: #1d1d1d;
-    border-radius: 16px;
-    padding: 20px;
-    max-width: 300px;
-    width: 90%;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    transform: scale(0.8);
-    transition: transform 0.3s ease;
-}
-
-.color-picker-overlay.show .color-picker-modal {
-    transform: scale(1);
-}
-
-.color-picker-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-}
-
-.color-picker-header h3 {
-    font-size: 16px;
-    color: #dcdcdc;
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    font-weight: normal;
-}
-
-.color-picker-close {
-    background: none;
-    border: none;
-    color: #dcdcdc;
-    font-size: 20px;
-    cursor: pointer;
-    padding: 4px;
-    transition: color 0.2s ease;
-}
-
-.color-picker-close:hover {
-    color: #ffffff;
 }
 
 .modal-content {

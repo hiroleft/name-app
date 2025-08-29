@@ -11,11 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const textContainer = document.querySelector('.text-container');
     const buttonContainer = document.querySelector('.button-container');
     
-    // カラーピッカーモーダル要素
-    const colorPickerOverlay = document.getElementById('color-picker-overlay');
-    const colorPickerClose = document.getElementById('color-picker-close');
-    const colorPickerInput = document.getElementById('color-picker-input');
-    const colorPickerTitle = document.getElementById('color-picker-title');
     
     
     // 設定要素の取得
@@ -407,50 +402,24 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // 現在編集中のカラー要素を追跡
-    let currentColorTarget = null;
-    
-    // カラーピッカーモーダルを開く
-    function openColorPickerModal(targetElement, title) {
-        currentColorTarget = targetElement;
-        colorPickerTitle.textContent = title;
-        colorPickerInput.value = targetElement.value;
-        colorPickerOverlay.classList.add('show');
-    }
-    
-    // カラーピッカーモーダルを閉じる
-    function closeColorPickerModal() {
-        colorPickerOverlay.classList.remove('show');
-        currentColorTarget = null;
-    }
     
     // カスタムカラーボタン
     bgCustomBtn.addEventListener('click', function(e) {
         e.preventDefault();
-        openColorPickerModal(backgroundColor, 'Background Color');
+        e.stopPropagation();
+        console.log('Background custom button clicked');
+        // 直接ネイティブピッカーを開く
+        backgroundColor.click();
     });
     
     textCustomBtn.addEventListener('click', function(e) {
-        e.preventDefault();  
-        openColorPickerModal(textColor, 'Text Color');
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('Text custom button clicked');
+        // 直接ネイティブピッカーを開く
+        textColor.click();
     });
     
-    // カラーピッカーイベント
-    colorPickerInput.addEventListener('input', function() {
-        if (currentColorTarget) {
-            currentColorTarget.value = this.value;
-            currentColorTarget.dispatchEvent(new Event('input'));
-        }
-    });
-    
-    colorPickerClose.addEventListener('click', closeColorPickerModal);
-    
-    // モーダル外をクリックして閉じる
-    colorPickerOverlay.addEventListener('click', function(e) {
-        if (e.target === colorPickerOverlay) {
-            closeColorPickerModal();
-        }
-    });
     
     // プリセットボタンのイベントリスナー
     presetBtns.forEach(btn => {
