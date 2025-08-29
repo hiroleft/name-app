@@ -402,7 +402,23 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    
+    // PC専用：カスタムボタンクリック処理
+    document.addEventListener('click', function(e) {
+        // PCでのみ動作（幅768px超）
+        if (window.innerWidth > 768) {
+            if (e.target.closest('label[for="background-color"]')) {
+                e.preventDefault();
+                e.stopPropagation();
+                setTimeout(() => backgroundColor.click(), 10);
+            }
+            
+            if (e.target.closest('label[for="text-color"]')) {
+                e.preventDefault();
+                e.stopPropagation();
+                setTimeout(() => textColor.click(), 10);
+            }
+        }
+    });
     
     // プリセットボタンのイベントリスナー
     presetBtns.forEach(btn => {
