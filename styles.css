@@ -486,6 +486,7 @@ body::-webkit-scrollbar {
     background-color: #404040;
 }
 
+
 /* プリセットボタン */
 .preset-buttons {
     display: flex;
@@ -608,7 +609,7 @@ body::-webkit-scrollbar {
     }
     
     .modal-body {
-        padding: 15px;
+        padding: 8px;
     }
 }
 
@@ -629,15 +630,15 @@ body::-webkit-scrollbar {
     .reset-btn,
     .random-top-btn,
     .add-btn {
-        height: 40px;
+        height: 48px;
     }
     
     .random-top-btn {
-        width: 40px;
+        width: 48px;
     }
     
     .add-btn {
-        width: 40px;
+        width: 48px;
         font-size: 20px;
     }
 }
