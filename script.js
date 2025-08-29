@@ -403,23 +403,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     
-    // カスタムカラーボタン
-    bgCustomBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        console.log('Background custom button clicked');
-        // 直接ネイティブピッカーを開く
-        backgroundColor.click();
-    });
-    
-    textCustomBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        console.log('Text custom button clicked');
-        // 直接ネイティブピッカーを開く
-        textColor.click();
-    });
-    
     
     // プリセットボタンのイベントリスナー
     presetBtns.forEach(btn => {
