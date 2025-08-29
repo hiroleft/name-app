@@ -11,6 +11,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const textContainer = document.querySelector('.text-container');
     const buttonContainer = document.querySelector('.button-container');
     
+    // カラーピッカーモーダル要素
+    const colorPickerModal = document.getElementById('color-picker-modal');
+    const colorPickerClose = document.getElementById('color-picker-close');
+    const colorOptions = document.querySelectorAll('.color-option');
+    const nativePickerBtn = document.getElementById('native-picker-btn');
+    const colorPickerTitle = document.getElementById('color-picker-title');
+    
     // 設定要素の取得
     const textInput = document.getElementById('text-input');
     const taglineInput = document.getElementById('tagline-input');
@@ -398,13 +405,58 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // 現在編集中のカラー要素を追跡
+    let currentColorInput = null;
+    
+    // カスタムカラーピッカーモーダルを開く
+    function openColorPicker(colorInput, title) {
+        currentColorInput = colorInput;
+        colorPickerTitle.textContent = title;
+        colorPickerModal.classList.add('show');
+    }
+    
+    // カスタムカラーピッカーモーダルを閉じる
+    function closeColorPicker() {
+        colorPickerModal.classList.remove('show');
+        currentColorInput = null;
+    }
+    
     // カスタムカラーボタン
     bgCustomBtn.addEventListener('click', function() {
-        backgroundColor.click();
+        openColorPicker(backgroundColor, 'Background Color');
     });
     
     textCustomBtn.addEventListener('click', function() {
-        textColor.click();
+        openColorPicker(textColor, 'Text Color');
+    });
+    
+    // カラーピッカーモーダルのイベントリスナー
+    colorPickerClose.addEventListener('click', closeColorPicker);
+    
+    // モーダル外をクリックして閉じる
+    colorPickerModal.addEventListener('click', function(e) {
+        if (e.target === colorPickerModal) {
+            closeColorPicker();
+        }
+    });
+    
+    // カラーオプションのクリック
+    colorOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            if (currentColorInput) {
+                currentColorInput.value = this.dataset.color;
+                currentColorInput.dispatchEvent(new Event('input'));
+                closeColorPicker();
+            }
+        });
+    });
+    
+    // More Colorsボタン（ネイティブピッカー）
+    nativePickerBtn.addEventListener('click', function() {
+        if (currentColorInput) {
+            closeColorPicker();
+            currentColorInput.click();
+        }
     });
     
     // プリセットボタンのイベントリスナー
