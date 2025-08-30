@@ -139,44 +139,48 @@ body::-webkit-scrollbar {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: 100px;
+    border-radius: 12px;
     box-shadow: 0 1px 4px 0 rgba(31, 38, 135, 0.2);
     cursor: pointer;
     font-family: 'Inter', sans-serif;
-    font-size: 14px;
+    font-size: 12px;
     color: #1d1d1d;
     transition: all 0.3s ease;
     opacity: 0;
     animation: fadeIn 0.2s ease-in-out 0.6s forwards;
     position: relative;
     overflow: hidden;
-}
-
-.reset-btn {
-    width: 48px;
-    height: 48px;
-    padding: 0;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 4px;
+    padding: 8px 12px;
+    min-width: 60px;
+    height: 48px;
 }
 
+.reset-btn,
 .random-top-btn {
-    width: 48px;
+    min-width: 60px;
     height: 48px;
-    padding: 0;
+    padding: 8px 12px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 4px;
 }
 
 .add-btn {
-    width: 48px;
+    min-width: 60px;
     height: 48px;
-    padding: 0;
+    padding: 8px 12px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 4px;
 }
 
 .reset-btn::before,
@@ -579,6 +583,14 @@ body::-webkit-scrollbar {
     }
 }
 
+.btn-label {
+    font-size: 8px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: currentColor;
+}
+
 @keyframes typewriter {
     from {
         width: 0;
@@ -639,12 +651,12 @@ body::-webkit-scrollbar {
         height: 48px;
     }
     
+    .reset-btn,
     .random-top-btn {
-        width: 48px;
+        min-width: 60px;
     }
     
     .add-btn {
-        width: 48px;
-        font-size: 20px;
+        min-width: 60px;
     }
 }

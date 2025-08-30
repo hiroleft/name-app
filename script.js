@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
         clearTimeout(buttonHideTimer);
         buttonHideTimer = setTimeout(() => {
             buttonContainer.classList.add('hidden');
-        }, 2000);
+        }, 4000);
     }
     
     // ボタンを非表示にする関数
@@ -268,10 +268,31 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 十分なコントラストがある色のペアを生成する関数
     function generateContrastingColors() {
-        const colors = ['#ebebeb', '#000000', '#5e30eb', '#e63b7a', '#96d35f'];
+        const colors = [
+            // ダークカラー
+            '#000000', '#1a1a1a', '#2c2c2c', '#333333', '#0d1117', '#21262d',
+            '#1c1c1e', '#2c3e50', '#34495e', '#2f3640', '#40739e', '#487eb0',
+            '#0c2461', '#0984e3', '#74b9ff', '#00b894', '#00cec9', '#6c5ce7',
+            '#a29bfe', '#fd79a8', '#fdcb6e', '#e17055', '#d63031', '#e84393',
+            '#00b894', '#00cec9', '#55a3ff', '#0984e3', '#6c5ce7', '#fd79a8',
+            
+            // ライトカラー
+            '#ffffff', '#f8f9fa', '#e9ecef', '#dee2e6', '#ced4da', '#adb5bd',
+            '#6c757d', '#495057', '#343a40', '#212529', '#fffacd', '#ffeaa7',
+            '#fab1a0', '#ff7675', '#fd79a8', '#e84393', '#a29bfe', '#6c5ce7',
+            '#00b894', '#00cec9', '#55efc4', '#81ecec', '#74b9ff', '#0984e3',
+            '#fdcb6e', '#e17055', '#d63031', '#636e72', '#b2bec3', '#ddd',
+            
+            // 鮮やかなカラー
+            '#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff',
+            '#ff8000', '#8000ff', '#0080ff', '#ff0080', '#80ff00', '#008000',
+            '#800080', '#808000', '#008080', '#800000', '#ff4500', '#32cd32',
+            '#1e90ff', '#ff1493', '#9400d3', '#00fa9a', '#ffd700', '#dc143c'
+        ];
+        
         let backgroundColor, textColor;
         let attempts = 0;
-        const maxAttempts = 50;
+        const maxAttempts = 100;
         
         do {
             backgroundColor = colors[Math.floor(Math.random() * colors.length)];
@@ -284,7 +305,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (getLuminance(backgroundColor) > 0.5) {
                 textColor = '#000000'; // 明るい背景には黒文字
             } else {
-                textColor = '#ebebeb'; // 暗い背景には明るい文字
+                textColor = '#ffffff'; // 暗い背景には白文字
             }
         }
         
@@ -301,11 +322,11 @@ document.addEventListener('DOMContentLoaded', function() {
             tagline: taglineInput.value || 'Make your name',
             subtitleVisible: subtitleVisible.checked,
             fontFamily: fonts[Math.floor(Math.random() * fonts.length)],
-            fontSize: 48, // 固定値
-            letterSpacing: 6, // 固定値
-            subtextFontSize: 16, // 固定値
-            subtextLetterSpacing: 1, // 固定値
-            textGap: 10, // 固定値
+            fontSize: parseInt(fontSize.value), // 現在の値を維持
+            letterSpacing: parseInt(letterSpacing.value), // 現在の値を維持
+            subtextFontSize: parseInt(subtextFontSize.value), // 現在の値を維持
+            subtextLetterSpacing: parseInt(subtextLetterSpacing.value), // 現在の値を維持
+            textGap: parseInt(textGap.value), // 現在の値を維持
             textColor: textColor,
             backgroundColor: backgroundColor
         };
