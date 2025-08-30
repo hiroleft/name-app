@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // プリセット設定
     const presets = {
         minimal: {
-            fontFamily: 'Inter',
+            fontFamily: 'Helvetica',
             fontSize: 48, // 固定値
             letterSpacing: 6, // 固定値
             subtextFontSize: 16, // 固定値
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
             subtitleVisible: true
         },
         urban: {
-            fontFamily: 'Arial',
+            fontFamily: 'Lucida Grande',
             fontSize: 48, // 固定値
             letterSpacing: 6, // 固定値
             subtextFontSize: 16, // 固定値
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
             subtitleVisible: true
         },
         elegant: {
-            fontFamily: 'Georgia',
+            fontFamily: 'Pinyon Script',
             fontSize: 48, // 固定値
             letterSpacing: 6, // 固定値
             subtextFontSize: 16, // 固定値
@@ -314,7 +314,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // ランダム設定生成
     function generateRandomSettings() {
-        const fonts = ['Inter', 'Arial', 'Helvetica', 'Times New Roman', 'Georgia', 'Verdana', 'Courier New', 'Monaco', 'Trebuchet MS', 'Impact', 'Comic Sans MS', 'Palatino', 'Tahoma', 'Lucida Grande', 'Futura'];
+        const fonts = ['Inter', 'Arial', 'Helvetica', 'Times New Roman', 'Georgia', 'Verdana', 'Courier New', 'Monaco', 'Trebuchet MS', 'Impact', 'Comic Sans MS', 'Palatino', 'Tahoma', 'Lucida Grande', 'Futura', 'Lucida Handwriting', 'Pinyon Script'];
         const { backgroundColor, textColor } = generateContrastingColors();
         
         return {
