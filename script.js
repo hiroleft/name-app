@@ -293,7 +293,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // ランダム設定生成
     function generateRandomSettings() {
-        const fonts = ['Inter', 'Arial', 'Helvetica', 'Times New Roman', 'Georgia', 'Verdana'];
+        const fonts = ['Inter', 'Arial', 'Helvetica', 'Times New Roman', 'Georgia', 'Verdana', 'Courier New', 'Monaco', 'Trebuchet MS', 'Impact', 'Comic Sans MS', 'Palatino', 'Tahoma', 'Lucida Grande', 'Futura'];
         const { backgroundColor, textColor } = generateContrastingColors();
         
         return {
