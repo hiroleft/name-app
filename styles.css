@@ -609,7 +609,7 @@ body::-webkit-scrollbar {
 /* レスポンシブデザイン */
 @media (max-width: 768px) {
     .main-container {
-        padding: 60px;
+        padding: 48px;
     }
     
     .main-title h1 {
